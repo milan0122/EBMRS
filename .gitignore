@@ -1,0 +1,8 @@
+.DS_Store
+# Ignore all Conda environments
+/envs/
+.conda/
+# Ignore the myenv folder
+/myenv/
+#ignore the models
+/models/
