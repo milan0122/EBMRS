@@ -1,0 +1,5 @@
+[theme]
+primaryColor = "#1f77b4"  # You can keep your preferred color for primary elements
+backgroundColor = "#ffffff"  # Set background color to white
+secondaryBackgroundColor = "#f0f0f0"  # Optional: light grey for secondary elements
+textColor = "#000000"  # Optional: text color, black in this case

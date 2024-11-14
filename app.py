@@ -1,10 +1,10 @@
 import cv2
-import tensorflow as tnf 
+import tensorflow as tf 
 import numpy as np
-from tensorflow.keras.models import load_model
+
 
 #import models
-model = load_model('models/fer_model.keras')
+model = tf.keras.models.load_model('models/fer_model.keras')
 hascade_classifier = cv2.CascadeClassifier('models/frontal_face.xml')
 
 def extract_features(image):
