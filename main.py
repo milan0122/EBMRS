@@ -106,15 +106,20 @@ def loadFile(uploaded_image):
         Music_classifier(prediction_label)
         
 
-st.text("Emotion-Based Music Recommendation System")
-st.subheader("Choose an photo")
+st.title("Emotion-Based Music Recommendation System")
+option = st.selectbox("Chose a photo or capture",['select photo','capture photo'])
+if option == "select photo":
+    with st.expander("Upload a photo"):
+        upload_file = st.file_uploader('choose a photo',type=['jpeg','jpg','png'])
+        if upload_file is not None:
+            img = Image.open(upload_file)
+            st.image(img,caption="uploaded photo",use_container_width=200)
 
-
-with st.expander("Upload a photo"):
-    upload_file = st.file_uploader('choose a phtoto',type=['jpeg','jpg','png'])
+else:
+    upload_file = st.camera_input('Take a photo')
     if upload_file is not None:
         img = Image.open(upload_file)
-        st.image(img,caption="uploaded photo",use_container_width=200)
+        #st.image(img,caption="photo captured",use_column_width=200)
 if st.button("Recommend"):
     if upload_file is not None:
         loadFile(img)
