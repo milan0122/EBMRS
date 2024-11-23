@@ -5,9 +5,6 @@
 # Ignore the myenv folder
 /myenv/
 #ignore the models
-/models/
-fer_model.keras
-frontal_face.xml
 data_moods.csv
 data_moods.json
 ebmp/
@@ -16,6 +13,7 @@ api.py
 json_conv.py
 practice.py
 .ipynb_checkpoints/
+__pycache__
 
 
 

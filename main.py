@@ -64,6 +64,9 @@ def  Music_classifier(pred_class):
     
     # Sort songs by popularity and select top 15
     top_songs = play.sort_values('popularity', ascending=False).head(15)
+    st.write()
+    st.subheader("List of music")
+    st.write()
     for idx in range(0,len(top_songs),3):
         cols = st.columns(3)
         for i, track_id in enumerate(top_songs['id'][idx:idx+3]):
@@ -97,7 +100,7 @@ def loadFile(uploaded_image):
         #prediction
         pred = model.predict(feature)
         prediction_label =Emotion_Classes[pred.argmax()]
-        st.title(f'prediction_label :{prediction_label}')
+        st.write(f'prediction_label :{prediction_label}')
         img_rgb = cv2.cvtColor(image_path,cv2.COLOR_BGR2RGB)
         st.image(img_rgb,use_container_width=200)
         
