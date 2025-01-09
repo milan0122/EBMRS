@@ -6,10 +6,38 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 import spotipy
+import time
 from spotipy.oauth2 import SpotifyClientCredentials
 clientID ="cbc12782e54a46c59723938017a759bb"
 secretID = "02ead26244ac44b7a335b2c284d19ae4"
+st.markdown("""
+    <style>
+        .title-style{
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;;   
+        }
+        .button-style> button {   
+            padding: 15px;
+            border-radius: 16px;
+        }
 
+        .button-style > button:hover {
+           color: #005f73; 
+        }
+        .stButton>button{
+            margin-left:300px;
+        }
+        .result{
+            padding:20px;
+            margin-bottom:20px;
+            font-size:24px;
+            
+        }
+
+    </style>
+""",unsafe_allow_html=True)     
 #initialize 
 Client_Credentials_Manager = SpotifyClientCredentials(client_id=clientID,client_secret=secretID)
 sp = spotipy.Spotify(client_credentials_manager=Client_Credentials_Manager)
@@ -48,7 +76,7 @@ def  Music_classifier(pred_class):
         'fear': ['Calm'],             
         'sad': ['Sad', 'Happy'],     
         'angry': ['Calm'],       
-        'neutral': ['Happy','Energetic'],
+        'neutral': ['Energetic'],
         'surprise': ['Energetic','happy'],   
         'disgust': ['Sad']            
     }
@@ -65,7 +93,7 @@ def  Music_classifier(pred_class):
     # Sort songs by popularity and select top 15
     top_songs = play.sort_values('popularity', ascending=False).head(15)
     st.write()
-    st.subheader("List of music")
+    st.markdown("<div class='result'>Recommended music</div>",unsafe_allow_html=True)
     st.write()
     for idx in range(0,len(top_songs),3):
         cols = st.columns(3)
@@ -87,7 +115,7 @@ def  Music_classifier(pred_class):
 def loadFile(uploaded_image):
     #convert PIL image to Open CV format
     image_path = np.array(uploaded_image)
-    gray = cv2.cvtColor(image_path,cv2.COLOR_RGB2GRAY)
+    gray = cv2.cvtColor(image_path,cv2.COLOR_BGR2GRAY)
     faces = hascade_classifier.detectMultiScale(gray, 1.3, 5)
     if len(faces)==0:
         st.warning("No face detected in the image")
@@ -100,32 +128,50 @@ def loadFile(uploaded_image):
         #prediction
         pred = model.predict(feature)
         prediction_label =Emotion_Classes[pred.argmax()]
-        st.write(f'prediction_label :{prediction_label}')
+        st.markdown(f'<div class="result"> Predicted Emotion :{prediction_label}',unsafe_allow_html=True)
         img_rgb = cv2.cvtColor(image_path,cv2.COLOR_BGR2RGB)
-        st.image(img_rgb,use_container_width=200)
+        st.image(img_rgb,use_column_width=200)
         
 
         #Recommend music
         Music_classifier(prediction_label)
-        
+  
+def main(): 
+    st.markdown('<div class="title-style">Emotion Based Music Recommendation System</div>',unsafe_allow_html=True)
+    option = st.selectbox("Chose a photo or capture",['Select Photo','Select Camera'])
+    if option == "Select Photo":
+        with st.expander("Upload a photo"):
+            upload_file = st.file_uploader('choose a photo',type=['jpeg','jpg','png'])
+            # if upload_file is not None:
+            #     img = Image.open(upload_file)
+            #     st.image(img,caption="uploaded photo",use_column_width=200)
 
-st.title("Emotion-Based Music Recommendation System")
-option = st.selectbox("Chose a photo or capture",['select photo','capture photo'])
-if option == "select photo":
-    with st.expander("Upload a photo"):
-        upload_file = st.file_uploader('choose a photo',type=['jpeg','jpg','png'])
+    else:
+        upload_file = st.camera_input('Take a photo')
+        # if upload_file is not None:
+        #     img = Image.open(upload_file)
+            #st.image(img,caption="photo captured",use_column_width=200)
+    st.markdown('<div class="button-style">',unsafe_allow_html=True)
+    if st.button("Recommend"):
+        st.markdown('</div>',unsafe_allow_html=True)
         if upload_file is not None:
-            img = Image.open(upload_file)
-            st.image(img,caption="uploaded photo",use_container_width=200)
+            placeholder=st.empty()
+            progress = placeholder.progress(0,"Processing.....")
+            time.sleep(1)
+            progress.progress(50)
+            time.sleep(1)
+            progress.progress(100)
+            image = Image.open(upload_file)
+            result = loadFile(image)
+            st.success(result)
+        else:
+            st.warning("Please upload or take photo")
 
-else:
-    upload_file = st.camera_input('Take a photo')
-    if upload_file is not None:
-        img = Image.open(upload_file)
-        #st.image(img,caption="photo captured",use_column_width=200)
-if st.button("Recommend"):
-    if upload_file is not None:
-        loadFile(img)
-        
+if __name__ == "__main__":
+    main()
+            
+                
+                
+            
 
 
