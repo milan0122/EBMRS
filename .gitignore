@@ -5,7 +5,6 @@
 # Ignore the myenv folder
 /myenv/
 #ignore the models
-data_moods.csv
 data_moods.json
 ebmp/
 .cache
@@ -13,6 +12,7 @@ api.py
 json_conv.py
 practice.py
 .ipynb_checkpoints/
+app.py
 
 
 

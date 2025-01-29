@@ -29,12 +29,19 @@ st.markdown("""
         .stButton>button{
             margin-left:300px;
         }
+        .img-style{
+            margin-left:200px;
+        }
         .result{
             padding:20px;
             margin-bottom:20px;
             font-size:24px;
+            display:flex;
+            justify-content:center;
+            algin-item:center;
             
         }
+        
 
     </style>
 """,unsafe_allow_html=True)     
@@ -99,11 +106,15 @@ def  Music_classifier(pred_class):
         cols = st.columns(3)
         for i, track_id in enumerate(top_songs['id'][idx:idx+3]):
             if i <len(cols):
+                popularity=top_songs['popularity'].iloc[idx+i]
+                mood_type=top_songs['mood'].iloc[idx+i]
                 song_name, artist_name, album_art_url = get_track_details(track_id)
                 with cols[i]:
-                    st.text(f"Title: {song_name}")
-                    st.text(f"Artist: {artist_name}")
                     st.image(album_art_url,width=100)
+                    st.markdown(f'  ⭐  {popularity/10}')
+                    st.text(f"Title:  {song_name}")
+                    st.text(f"Artist: {artist_name}")
+                    st.text(f"type:   {mood_type}")
                     st.write()
                     st.write()
         
@@ -130,7 +141,9 @@ def loadFile(uploaded_image):
         prediction_label =Emotion_Classes[pred.argmax()]
         st.markdown(f'<div class="result"> Predicted Emotion :{prediction_label}',unsafe_allow_html=True)
         img_rgb = cv2.cvtColor(image_path,cv2.COLOR_BGR2RGB)
-        st.image(img_rgb,use_column_width=200)
+        st.markdown('<div class ="image-style">',unsafe_allow_html=True)
+        st.image(img_rgb,width=500)
+        st.markdown('</div>',unsafe_allow_html=True)
         
 
         #Recommend music
@@ -162,8 +175,8 @@ def main():
             time.sleep(1)
             progress.progress(100)
             image = Image.open(upload_file)
-            result = loadFile(image)
-            st.success(result)
+            loadFile(image)
+            #st.success(result)
         else:
             st.warning("Please upload or take photo")
 
