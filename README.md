@@ -12,12 +12,11 @@
 - It consist of another program 'named app.py' through which you can check you emotion in real-time through the web-cam dynamically.
 - However,the main program you can check your emotion in real time through webcam and then you need to click the picture or upload the picture.
 ## SNAPSHOTS
-[!Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/sample.png)
+![Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/sample.png)
 
-[!Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/confusion_matrix.png)|
+![Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/confusion_matrix.png)|
+![Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/accuracyvsloss.png)
 
-[!Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/accuracyvsloss.png)
-
-[!Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/Screenshot%202025-06-23%20at%2010.06.37.png)|
-[!Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/Screenshot%202025-06-23%20at%2010.06.45.png)|
-[!Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/Screenshot%202025-06-23%20at%2010.07.03.png)
+![Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/Screenshot%202025-06-23%20at%2010.06.37.png)|
+![Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/Screenshot%202025-06-23%20at%2010.06.45.png)|
+![Alt Text - prediction through the test image ](https://github.com/milan0122/EBMRS/blob/949ab1dba1d6f23feec216c8843d051b40546f36/snapshots/Screenshot%202025-06-23%20at%2010.07.03.png)
