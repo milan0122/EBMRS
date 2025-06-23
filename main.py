@@ -55,10 +55,10 @@ def get_track_details(track_id):
     artist_name = track['artists'][0]['name']
     return song_name,artist_name,album_art_url
 
-song_df = pd.read_csv('data_moods.csv')
+song_df = pd.read_csv('notebook/music_moods.csv')
 
-model = tf.keras.models.load_model('models/fer_model.keras')
-hascade_classifier = cv2.CascadeClassifier('models/frontal_face.xml')
+model = tf.keras.models.load_model('notebook/CNN_model_Checkpoint2.keras')
+hascade_classifier = cv2.CascadeClassifier('notebook/frontal_face.xml')
 
 def extract_features(image):
     image_array = np.array(image)
@@ -127,11 +127,13 @@ def loadFile(uploaded_image):
     #convert PIL image to Open CV format
     image_path = np.array(uploaded_image)
     gray = cv2.cvtColor(image_path,cv2.COLOR_BGR2GRAY)
+    #faces = hascade_classifier.detectMultiScale(image_path, 1.3, 5)
     faces = hascade_classifier.detectMultiScale(gray, 1.3, 5)
     if len(faces)==0:
         st.warning("No face detected in the image")
         return
     for i,j,w,h in faces:
+       # face_image = image_path[j:j+h, i:i+w]
         face_image = gray[j:j+h, i:i+w]
         cv2.rectangle(image_path,(i,j),(i+w,j+h),(255,0,0),2)
         face_image = cv2.resize(face_image,(48,48))

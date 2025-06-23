@@ -11,8 +11,9 @@ ebmp/
 api.py
 json_conv.py
 practice.py
-.ipynb_checkpoints/
 app.py
+.ipynb_checkpoints/
+
 
 
 
